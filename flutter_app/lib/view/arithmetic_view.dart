@@ -9,17 +9,50 @@ class ArithmeticView extends StatefulWidget {
 }
 
 class _ArithmeticViewState extends State<ArithmeticView> {
-  //
-  Arithmetic arithmetic = Arithmetic();
-
   double firstNum = 0;
   double secondNum = 0;
   double result = 0;
+
+// late initialization which means I will initialize whenever I need it
+  late Arithmetic arithmetic;
+
+  void _sub() {
+    // initialized outside of the setState beacause setState rebuilds the UI
+    arithmetic = Arithmetic();
+    setState(() {
+      result =
+          arithmetic.subtract(firstNumber: firstNum, secondNumber: secondNum);
+    });
+  }
+
+  void _add() {
+     arithmetic = Arithmetic();
+    setState(() {
+      result = arithmetic.add(firstNumber: firstNum, secondNumber: secondNum);
+    });
+  }
+
+  void _multiply() {
+     arithmetic = Arithmetic();
+    setState(() {
+      result =
+          arithmetic.multiply(firstNumber: firstNum, secondNumber: secondNum);
+    });
+  }
+
+  void _divide() {
+     arithmetic = Arithmetic();
+    setState(() {
+      result =
+          arithmetic.divide(firstNumber: firstNum, secondNumber: secondNum);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Arithmetic Calculation'),
+        title: const Text('Arithmetic Calculation'),
         centerTitle: true,
         elevation: 0.0,
       ),
@@ -29,7 +62,7 @@ class _ArithmeticViewState extends State<ArithmeticView> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 16.0,
                 ),
                 TextField(
@@ -43,7 +76,7 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16.0,
                 ),
                 TextField(
@@ -57,37 +90,57 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16.0,
                 ),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      setState(() {
-                        result = arithmetic.add(firstNumber: firstNum, secondNumber: secondNum);
-                      });
+                      _add();
                     },
-                    child: Text('ADD'),
+                    child: const Text('ADD'),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16.0,
                 ),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      setState(() {
-                        result = arithmetic.subtract(firstNumber: firstNum, secondNumber: secondNum);
-                      });
+                      _sub();
                     },
-                    child: Text('SUB'),
+                    child: const Text('SUB'),
+                  ),
+                ),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _multiply();
+                    },
+                    child: const Text('MULTIPLY'),
+                  ),
+                ),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _divide();
+                    },
+                    child: const Text('DIVIDE'),
                   ),
                 ),
                 Text(
                   'Sum is : $result',
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 20,
                       fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.bold),
