@@ -22,7 +22,7 @@ class _SimpleInterestViewState extends State<SimpleInterestView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Simple Interest Calculator'),
+        title: const Text('Simple Interest Calculator'),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -31,7 +31,7 @@ class _SimpleInterestViewState extends State<SimpleInterestView> {
             padding: const EdgeInsets.all(25.0),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
                 TextField(
@@ -45,7 +45,7 @@ class _SimpleInterestViewState extends State<SimpleInterestView> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
                 TextField(
@@ -58,7 +58,7 @@ class _SimpleInterestViewState extends State<SimpleInterestView> {
                         borderRadius: BorderRadius.circular(18.0),
                       )),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
                 TextField(
@@ -72,7 +72,7 @@ class _SimpleInterestViewState extends State<SimpleInterestView> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
                 SizedBox(
@@ -86,15 +86,15 @@ class _SimpleInterestViewState extends State<SimpleInterestView> {
                             rate: rateValue);
                       });
                     },
-                    child: Text('CALCULATE'),
+                    child: const Text('CALCULATE'),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
                 Text(
                   'Simple interest is $result',
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic),
