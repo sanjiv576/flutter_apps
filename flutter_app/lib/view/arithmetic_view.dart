@@ -26,14 +26,14 @@ class _ArithmeticViewState extends State<ArithmeticView> {
   }
 
   void _add() {
-     arithmetic = Arithmetic();
+    arithmetic = Arithmetic();
     setState(() {
       result = arithmetic.add(firstNumber: firstNum, secondNumber: secondNum);
     });
   }
 
   void _multiply() {
-     arithmetic = Arithmetic();
+    arithmetic = Arithmetic();
     setState(() {
       result =
           arithmetic.multiply(firstNumber: firstNum, secondNumber: secondNum);
@@ -41,7 +41,7 @@ class _ArithmeticViewState extends State<ArithmeticView> {
   }
 
   void _divide() {
-     arithmetic = Arithmetic();
+    arithmetic = Arithmetic();
     setState(() {
       result =
           arithmetic.divide(firstNumber: firstNum, secondNumber: secondNum);
@@ -139,7 +139,7 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                   ),
                 ),
                 Text(
-                  'Sum is : $result',
+                  'Result is : $result',
                   style: const TextStyle(
                       fontSize: 20,
                       fontStyle: FontStyle.italic,

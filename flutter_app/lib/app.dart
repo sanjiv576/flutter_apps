@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'view/arithmetic_view.dart';
 import 'view/circle_view.dart';
+import 'view/column_view.dart';
 import 'view/dashboard_view.dart';
 import 'view/change_name_view.dart';
+import 'view/rich_text_view.dart';
 import 'view/simple_interest_view.dart';
 
 class App extends StatelessWidget {
@@ -19,7 +21,9 @@ class App extends StatelessWidget {
         '/arithmeticRoute': (context) => const ArithmeticView(),
         '/simpleInterestRoute': (context) => const SimpleInterestView(),
         '/circleRoute': (context) => const CircleView(),
-        '/changeNameRoute': (context) => const ChangeNameView()
+        '/changeNameRoute': (context) => const ChangeNameView(),
+        '/richTextRoute': (context) => const RichTextView(),
+        '/columnRoute': (context)=> const ColumnView()
       },
     );
   }
