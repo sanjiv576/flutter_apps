@@ -38,7 +38,7 @@ class ColumnView extends StatelessWidget {
               Icon(
                 Icons.star,
                 size: 60,
-                color: Colors.red,
+                color: Colors.red, 
               ),
               Icon(
                 Icons.star,
