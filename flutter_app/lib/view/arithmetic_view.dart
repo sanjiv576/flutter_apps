@@ -2,6 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../model/arithmetic.dart';
 
+// enum for maths opeartions
+enum OperationType {
+  add('addition'),
+  sub('subtraction'),
+  mul('multiplication'),
+  div('division');
+
+  final String myText;
+  const OperationType(this.myText);
+}
+
 class ArithmeticView extends StatefulWidget {
   const ArithmeticView({super.key});
 
@@ -11,8 +22,8 @@ class ArithmeticView extends StatefulWidget {
 
 class _ArithmeticViewState extends State<ArithmeticView> {
 // store values of first and secon in controllers
-  final firstController = TextEditingController(text: '23');
-  final secondController = TextEditingController(text: '45');
+  final firstController = TextEditingController();
+  final secondController = TextEditingController();
 
   double result = 0;
 
@@ -24,8 +35,6 @@ class _ArithmeticViewState extends State<ArithmeticView> {
   void initState() {
     super.initState();
   }
-
-
 
   // since, TextEditingController is a class, which takes memory even thought the app is closed
   // so, it is needed to be disposed/closed
@@ -73,6 +82,32 @@ class _ArithmeticViewState extends State<ArithmeticView> {
           secondNumber: double.parse(secondController.text));
     });
   }
+
+  void _calculateOperationType({required OperationType operationName}) {
+    // stores the values of enum
+    String targetOperation = operationName.myText;
+
+    switch (targetOperation) {
+      case 'addition':
+        _add();
+        break;
+
+      case 'subtraction':
+        _sub();
+        break;
+
+      case 'multiplication':
+        _multiply();
+        break;
+      case 'division':
+        _divide();
+        break;
+    }
+  }
+
+  // for radio button
+  // initlization of enum with add
+  OperationType _targetOperationType = OperationType.add;
 
   // to know the state of the Form, which field is filled or not
   final myKey = GlobalKey<FormState>();
@@ -134,6 +169,65 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                       ),
                     ),
                   ),
+
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+
+                  // OperationType is the enum
+                  // value --> store the text value for selection
+                  //  groupValue --> currently selected value for this group
+                  // title ==> displays the text in the UI
+
+                  RadioListTile<OperationType>(
+                    title: const Text('Addition'),
+                    value: OperationType.add,
+                    groupValue: _targetOperationType,
+                    onChanged: (value) {
+                      setState(() {
+                        _targetOperationType = value!;
+                        // print(_targetOperationType.text);
+                      });
+                    },
+                  ),
+
+                  // OperationType is the enum
+
+                  RadioListTile<OperationType>(
+                    title: const Text('Subtract'),
+                    value: OperationType.sub,
+                    groupValue: _targetOperationType,
+                    onChanged: (OperationType? value) {
+                      setState(() {
+                        _targetOperationType = value!;
+                        // print(_targetOperationType.text);
+                      });
+                    },
+                  ),
+                  // OperationType is the enum
+                  RadioListTile<OperationType>(
+                    value: OperationType.mul,
+                    title: const Text('Multiply'),
+                    groupValue: _targetOperationType,
+                    onChanged: (OperationType? value) {
+                      setState(() {
+                        _targetOperationType = value!;
+                        // print(_targetOperationType.text);
+                      });
+                    },
+                  ),
+                  RadioListTile<OperationType>(
+                    title: const Text('Divide'),
+                    value: OperationType.div,
+                    groupValue: _targetOperationType,
+                    onChanged: (value) {
+                      setState(() {
+                        _targetOperationType = value!;
+                        // print(_targetOperationType.text);
+                      });
+                    },
+                  ),
+
                   const SizedBox(
                     height: 16.0,
                   ),
@@ -143,56 +237,15 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                       onPressed: () {
                         // now, execute the validator
                         if (myKey.currentState!.validate()) {
-                          _add();
+                          _calculateOperationType(
+                              operationName: _targetOperationType);
                         }
                       },
-                      child: const Text('ADD'),
+                      child: const Text('CALCULATE'),
                     ),
                   ),
                   const SizedBox(
-                    height: 16.0,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // execute the validator
-                        if (myKey.currentState!.validate()) {
-                          _sub();
-                        }
-                      },
-                      child: const Text('SUB'),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16.0,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // execute the validator
-                        if (myKey.currentState!.validate()) {
-                          _multiply();
-                        }
-                      },
-                      child: const Text('MULTIPLY'),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16.0,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // now, execute the validator
-                        if (myKey.currentState!.validate()) {
-                          _divide();
-                        }
-                      },
-                      child: const Text('DIVIDE'),
-                    ),
+                    height: 12.0,
                   ),
                   Text(
                     'Result is : $result',
@@ -210,3 +263,54 @@ class _ArithmeticViewState extends State<ArithmeticView> {
     );
   }
 }
+
+
+
+
+// with Add, subtract , multiply buttons
+
+// const SizedBox(
+//                     height: 16.0,
+//                   ),
+//                   SizedBox(
+//                     width: double.infinity,
+//                     child: ElevatedButton(
+//                       onPressed: () {
+//                         // now, execute the validator
+//                         if (myKey.currentState!.validate()) {
+//                           _add();
+//                         }
+//                       },
+//                       child: const Text('ADD'),
+//                     ),
+//                   ),
+//                   const SizedBox(
+//                     height: 16.0,
+//                   ),
+//                   SizedBox(
+//                     width: double.infinity,
+//                     child: ElevatedButton(
+//                       onPressed: () {
+//                         // execute the validator
+//                         if (myKey.currentState!.validate()) {
+//                           _sub();
+//                         }
+//                       },
+//                       child: const Text('SUB'),
+//                     ),
+//                   ),
+//                   const SizedBox(
+//                     height: 16.0,
+//                   ),
+//                   SizedBox(
+//                     width: double.infinity,
+//                     child: ElevatedButton(
+//                       onPressed: () {
+//                         // execute the validator
+//                         if (myKey.currentState!.validate()) {
+//                           _multiply();
+//                         }
+//                       },
+//                       child: const Text('MULTIPLY'),
+//                     ),
+//                   ),
