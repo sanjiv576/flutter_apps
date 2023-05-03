@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/view/output_view.dart';
 
 import '../model/arithmetic.dart';
 
@@ -236,12 +235,19 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/outputRoute');
                         // now, execute the validator
-                        // if (myKey.currentState!.validate()) {
-                        //   _calculateOperationType(
-                        //       operationName: _targetOperationType);
-                        // }
+                        if (myKey.currentState!.validate()) {
+                          _calculateOperationType(
+                              operationName: _targetOperationType);
+
+// pass the result to the next stateless Result view
+                          Navigator.pushNamed(
+                            context,
+                            '/outputRoute',
+                            arguments:
+                                result, // passing result value as an Object not double here
+                          );
+                        }
                       },
                       child: const Text('CALCULATE'),
                     ),
