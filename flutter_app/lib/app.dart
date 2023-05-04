@@ -6,10 +6,12 @@ import 'view/circle_view.dart';
 import 'view/column_view.dart';
 import 'view/container_view.dart';
 import 'view/dashboard_view.dart';
+import 'view/display_student_view.dart';
 import 'view/load_image_view.dart';
 import 'view/output_view.dart';
 import 'view/rich_text_view.dart';
 import 'view/simple_interest_view.dart';
+import 'view/student_detail_view.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -30,6 +32,8 @@ class App extends StatelessWidget {
         '/outputRoute': (context) => OutputView(),
         '/containerRoute': (context) => const ContainerView(),
         '/loadImageRoute': (context) => const LoadImageView(),
+        '/studentDetailRoute': (context) => const StudentDetailView(),
+        '/displayStudentRoute': (context) => const DisplayStudentView(),
       },
     );
   }
