@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'view/arithmetic_view.dart';
 import 'view/change_name_view.dart';
 import 'view/circle_view.dart';
+import 'view/class_exercise_view.dart';
 import 'view/column_view.dart';
 import 'view/container_view.dart';
 import 'view/dashboard_view.dart';
 import 'view/display_student_view.dart';
 import 'view/load_image_view.dart';
+import 'view/media_query_view.dart';
 import 'view/output_view.dart';
 import 'view/rich_text_view.dart';
 import 'view/simple_interest_view.dart';
@@ -34,6 +36,8 @@ class App extends StatelessWidget {
         '/loadImageRoute': (context) => const LoadImageView(),
         '/studentDetailRoute': (context) => const StudentDetailView(),
         '/displayStudentRoute': (context) => const DisplayStudentView(),
+        '/mediaQueryRoute': (context) => const MediaQueryView(),
+        '/clasExerciseRoute': (context) => const ClassExerciseView(),
       },
     );
   }

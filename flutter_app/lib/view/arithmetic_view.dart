@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../common/show_my_snackbar.dart';
 import '../model/arithmetic.dart';
 
 // enum for maths opeartions
@@ -90,10 +91,16 @@ class _ArithmeticViewState extends State<ArithmeticView> {
     switch (targetOperation) {
       case 'addition':
         _add();
+        showSnackBar(
+            context: context,
+            message: 'Result is $result',
+            color: Colors.green);
         break;
 
       case 'subtraction':
         _sub();
+        showSnackBar(
+            context: context, message: 'Result is $result', color: Colors.red);
         break;
 
       case 'multiplication':
@@ -240,13 +247,13 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                           _calculateOperationType(
                               operationName: _targetOperationType);
 
-// pass the result to the next stateless Result view
-                          Navigator.pushNamed(
-                            context,
-                            '/outputRoute',
-                            arguments:
-                                result, // passing result value as an Object not double here
-                          );
+                          // pass the result to the next stateless Result view
+                          // Navigator.pushNamed(
+                          //   context,
+                          //   '/outputRoute',
+                          //   arguments:
+                          //       result, // passing result value as an Object not double here
+                          // );
                         }
                       },
                       child: const Text('CALCULATE'),
