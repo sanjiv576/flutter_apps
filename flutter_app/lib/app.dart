@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'view/arithmetic_view.dart';
+import 'view/card_view.dart';
 import 'view/change_name_view.dart';
 import 'view/circle_view.dart';
 import 'view/class_exercise_view.dart';
@@ -8,6 +9,8 @@ import 'view/column_view.dart';
 import 'view/container_view.dart';
 import 'view/dashboard_view.dart';
 import 'view/display_student_view.dart';
+import 'view/grid_view.dart';
+import 'view/grid_view_screen_classwork.dart';
 import 'view/load_image_view.dart';
 import 'view/media_query_view.dart';
 import 'view/output_view.dart';
@@ -38,6 +41,9 @@ class App extends StatelessWidget {
         '/displayStudentRoute': (context) => const DisplayStudentView(),
         '/mediaQueryRoute': (context) => const MediaQueryView(),
         '/clasExerciseRoute': (context) => const ClassExerciseView(),
+        '/gridViewRoute': (context) => GridViewScreen(),
+        '/cardviewRoute': (context) => const CardView(),
+        '/gridViewClassworkRoute': (context) => const GridViewScreenClasswork(),
       },
     );
   }

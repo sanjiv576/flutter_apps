@@ -45,10 +45,11 @@ class _DisplayStudentViewState extends State<DisplayStudentView> {
                     IconButton(
                         onPressed: () {
                           // delete the data by index and again rebuild the UI
-                        setState(() {
-                          studentList!.removeAt(index);
-                        });
-                        }, icon: const Icon(Icons.delete)),
+                          setState(() {
+                            studentList!.removeAt(index);
+                          });
+                        },
+                        icon: const Icon(Icons.delete)),
                     IconButton(onPressed: () {}, icon: const Icon(Icons.edit))
                   ],
                 ),
