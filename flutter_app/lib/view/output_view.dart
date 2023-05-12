@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class OutputView extends StatefulWidget {
-  OutputView({super.key});
+  const OutputView({super.key});
 
   @override
   State<OutputView> createState() => _OutputViewState();

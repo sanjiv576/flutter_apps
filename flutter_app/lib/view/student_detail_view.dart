@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../model/student.dart';
+
 // enum for gender
 
 enum GenderType {
@@ -37,6 +39,30 @@ class _StudentDetailViewState extends State<StudentDetailView> {
       <DropdownMenuEntry<String>>[];
 
   final _formKey = GlobalKey<FormState>();
+
+  // studnet list
+  List<Student> studentList = [];
+
+  void _submitStudent() {
+    if (_formKey.currentState!.validate()) {
+      print('First name: ${firstNameController.text.trim()}');
+      print('Last name: ${lastNameController.text.trim()}');
+      print('Age : ${ageController.text.trim()}');
+      print('Gender : ${_genderGroup.gender}');
+      print('Address : ${addressController.text.trim()}');
+      print('City : ${cityController.text.trim()}');
+
+      Student student = Student(
+          firstName: firstNameController.text.trim(),
+          lastName: lastNameController.text.trim(),
+          address: addressController.text.trim(),
+          age: int.parse(ageController.text.trim()),
+          gender: _genderGroup.gender,
+          city: cityController.text.trim());
+
+      studentList.add(student);
+    }
+  }
 
   @override
   void initState() {
@@ -200,7 +226,7 @@ class _StudentDetailViewState extends State<StudentDetailView> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
+                        _submitStudent();
                       },
                       child: const Text('Save Student'),
                     ),
@@ -212,7 +238,7 @@ class _StudentDetailViewState extends State<StudentDetailView> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/displayStudentRoute');
+                        Navigator.pushNamed(context, '/displayStudentRoute', arguments: studentList);
                       },
                       child: const Text('Display Details'),
                     ),

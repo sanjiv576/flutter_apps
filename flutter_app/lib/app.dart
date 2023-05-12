@@ -31,7 +31,7 @@ class App extends StatelessWidget {
         '/changeNameRoute': (context) => const ChangeNameView(),
         '/richTextRoute': (context) => const RichTextView(),
         '/columnRoute': (context) => const ColumnView(),
-        '/outputRoute': (context) => OutputView(),
+        '/outputRoute': (context) => const OutputView(),
         '/containerRoute': (context) => const ContainerView(),
         '/loadImageRoute': (context) => const LoadImageView(),
         '/studentDetailRoute': (context) => const StudentDetailView(),
