@@ -173,6 +173,17 @@ class DashboardView extends StatelessWidget {
                     },
                     child: const Text('Class Exercise Grid View')),
               ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/colorChangeRoute');
+                    },
+                    child: const Text('Color Change Screen')),
+              ),
             ],
           ),
         ),

@@ -5,6 +5,7 @@ import 'view/card_view.dart';
 import 'view/change_name_view.dart';
 import 'view/circle_view.dart';
 import 'view/class_exercise_view.dart';
+import 'view/color_change_view.dart';
 import 'view/column_view.dart';
 import 'view/container_view.dart';
 import 'view/dashboard_view.dart';
@@ -44,6 +45,7 @@ class App extends StatelessWidget {
         '/gridViewRoute': (context) => GridViewScreen(),
         '/cardviewRoute': (context) => const CardView(),
         '/gridViewClassworkRoute': (context) => const GridViewScreenClasswork(),
+        '/colorChangeRoute': (context) =>  ColorChangeView(),
       },
     );
   }
