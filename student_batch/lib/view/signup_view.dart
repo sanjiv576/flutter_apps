@@ -51,7 +51,7 @@ class _SignUpViewState extends State<SignUpView> {
         gender: 'male',
         username: 'johhny',
         password: 'johnny123',
-        batchId: '30-A');
+        batchId: '30-B');
 
     StudentState.students.add(student1);
     StudentState.students.add(student2);

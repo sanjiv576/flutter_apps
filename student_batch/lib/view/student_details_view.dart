@@ -12,7 +12,7 @@ class StudentDetailView extends StatefulWidget {
 
 class _OutputViewState extends State<StudentDetailView> {
   String? selectBatch;
-  Iterable<Student>? selectedStudents;
+  List<Student>? selectedStudents;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -23,7 +23,8 @@ class _OutputViewState extends State<StudentDetailView> {
 
     // filter or select only selected batch
     selectedStudents = StudentState.students
-        .where((student) => student.batchId == selectBatch);
+        .where((student) => student.batchId == selectBatch!)
+        .toList();
   }
 
   @override
@@ -35,25 +36,27 @@ class _OutputViewState extends State<StudentDetailView> {
       ),
       body: SafeArea(
         child: ListView.separated(
-            separatorBuilder: (BuildContext context, index) => const Divider(),
-            itemCount: selectedStudents!.length,
-            itemBuilder: (context, index) {
-              var fname = StudentState.students[index].fname;
-              var lname = StudentState.students[index].lname;
-              var batch = StudentState.students[index].batchId;
-              return ListTile(
-                leading: const CircleAvatar(
-                  radius: 40,
-                  backgroundColor: Colors.black,
-                  backgroundImage: NetworkImage(
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2SFnnNUJhckK0xwLLdYyeKGfGFm4rb3E16A&usqp=CAU'),
-                ),
-                title: Text('$fname $lname'),
-                subtitle: Text(
-                  batch.toString(),
-                ),
-              );
-            }),
+           separatorBuilder: (BuildContext context, index) =>
+               const Divider(),
+           itemCount: selectedStudents!.length,
+           itemBuilder: (context, index) {
+             var fname = selectedStudents![index].fname;
+             var lname = selectedStudents![index].lname;
+             var batch = selectedStudents![index].batchId;
+             return ListTile(
+               leading: const CircleAvatar(
+                 radius: 40,
+                 backgroundColor: Colors.black,
+                 backgroundImage: NetworkImage(
+                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2SFnnNUJhckK0xwLLdYyeKGfGFm4rb3E16A&usqp=CAU'),
+               ),
+               title: Text('$fname $lname'),
+               subtitle: Text(
+                 batch.toString(),
+               ),
+             );
+           },
+         ),
       ),
     );
   }
