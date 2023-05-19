@@ -43,6 +43,7 @@ class _SignUpViewState extends State<SignUpView> {
         username: 'john',
         password: 'john123',
         batchId: '30-A');
+
     Student student2 = Student(
         studentId: 1234.toString(),
         fname: 'Johhy',
@@ -53,8 +54,30 @@ class _SignUpViewState extends State<SignUpView> {
         password: 'johnny123',
         batchId: '30-B');
 
+    Student student3 = Student(
+        studentId: 1234.toString(),
+        fname: 'Romeo',
+        lname: 'Kenny',
+        age: 33,
+        gender: 'male',
+        username: 'romeo',
+        password: 'romeo',
+        batchId: '30-A');
+
+    Student student4 = Student(
+        studentId: 1234.toString(),
+        fname: 'Sanjiv',
+        lname: 'Shrestha',
+        age: 22,
+        gender: 'male',
+        username: 'sanjiv',
+        password: 'sanjiv123',
+        batchId: '30-B');
+
     StudentState.students.add(student1);
     StudentState.students.add(student2);
+    StudentState.students.add(student3);
+    StudentState.students.add(student4);
   }
 
   @override
