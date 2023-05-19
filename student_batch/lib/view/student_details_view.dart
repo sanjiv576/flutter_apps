@@ -27,6 +27,53 @@ class _OutputViewState extends State<StudentDetailView> {
         .toList();
   }
 
+  // void _deleteFromOriginalList() {
+  //   //
+  //   // StudentState.students.where((student) => student.batchId == selectBatch!);
+  // }
+
+  void _deleteStudent({required index}) {
+    showDialog(
+        context: context,
+        builder: (context) => Dialog(
+                child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Wrap(
+                children: [
+                  const Text('Do you want to delete ?'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green),
+                        onPressed: () {
+                          setState(() {
+                            // delete from current list
+                            selectedStudents!.removeAt(index);
+                          });
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Yes'),
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('No'),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +83,7 @@ class _OutputViewState extends State<StudentDetailView> {
       ),
       body: SafeArea(
         child: ListView.separated(
+          shrinkWrap: true,
           separatorBuilder: (BuildContext context, index) => const Divider(),
           itemCount: selectedStudents!.length,
           itemBuilder: (context, index) {
@@ -52,9 +100,8 @@ class _OutputViewState extends State<StudentDetailView> {
                       GestureDetector(
                         onDoubleTap: () {
                           print('Double tap on the screen');
-                          setState(() {
-                            selectedStudents!.removeAt(index);
-                          });
+
+                          _deleteStudent(index: index);
                         },
                         child: SizedBox(
                           height: 500,
@@ -114,7 +161,6 @@ class _OutputViewState extends State<StudentDetailView> {
     );
   }
 }
-
 
 // previous work in ListView with ListTile
 // child: ListView.separated(
