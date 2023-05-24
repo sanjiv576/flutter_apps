@@ -162,7 +162,7 @@ class DashboardView extends StatelessWidget {
                     },
                     child: const Text('Card View')),
               ),
-               const SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
               SizedBox(
@@ -183,6 +183,39 @@ class DashboardView extends StatelessWidget {
                       Navigator.pushNamed(context, '/colorChangeRoute');
                     },
                     child: const Text('Color Change Screen')),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/stackViewRoute');
+                    },
+                    child: const Text('Stack View')),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/classworkStackViewRoute');
+                    },
+                    child: const Text('Classwork Stack View')),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/galleryRoute');
+                    },
+                    child: const Text('Gallery')),
               ),
             ],
           ),
