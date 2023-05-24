@@ -10,6 +10,7 @@ import 'view/color_change_view.dart';
 import 'view/column_view.dart';
 import 'view/container_view.dart';
 import 'view/dashboard_view.dart';
+import 'view/datatable_view.dart';
 import 'view/display_student_view.dart';
 import 'view/gallery_view.dart';
 import 'view/grid_view.dart';
@@ -51,7 +52,8 @@ class App extends StatelessWidget {
         '/colorChangeRoute': (context) => ColorChangeView(),
         '/stackViewRoute': (context) => const StackView(),
         '/classworkStackViewRoute': (context) => const ClassworkStackView(),
-        '/galleryRoute': (context) =>  GalleryView(),
+        '/galleryRoute': (context) => GalleryView(),
+        '/datatableRoute': (context) => const DataTableView(),
       },
     );
   }
