@@ -35,7 +35,7 @@ class StackView extends StatelessWidget {
           // ),
           Positioned(
               bottom: 1,
-              child: Container(
+              child: SizedBox(
                 // color: Colors.pink,
                 height: 70,
                 width: width * .3,

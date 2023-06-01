@@ -228,6 +228,17 @@ class DashboardView extends StatelessWidget {
                     },
                     child: const Text('Data Table')),
               ),
+                const SizedBox(
+                height: 10.0,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/datetimeRoute');
+                    },
+                    child: const Text('Data and Time Picker')),
+              ),
             ],
           ),
         ),

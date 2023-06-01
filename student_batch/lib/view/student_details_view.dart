@@ -56,7 +56,7 @@ class _OutputViewState extends State<StudentDetailView> {
                             selectedStudents!.removeAt(index);
                           });
                           Navigator.pop(context);
-                        },
+                        }, 
                         child: const Text('Yes'),
                       ),
                       ElevatedButton(

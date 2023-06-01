@@ -10,7 +10,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/calculatorRoute',
-      routes: {'/calculatorRoute': (context) => CalculatorView()},
+      routes: {'/calculatorRoute': (context) => const CalculatorView()},
     );
   }
 }

@@ -26,12 +26,12 @@ class GalleryView extends StatelessWidget {
           mainAxisSpacing: 10,
         ),
         itemBuilder: ((context, index) {
-          if (index >= natureImages.length) index = 0;
+          // if (index >= natureImages.length) index = 0;
           // print('Index: $index');
           return Container(
             color: Colors.pink,
             height: 60,
-            child: Image.network(natureImages[index]),
+            child: Image.network(natureImages[index%5]),
           );
         }),
       ),

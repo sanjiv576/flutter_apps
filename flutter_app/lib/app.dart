@@ -11,6 +11,7 @@ import 'view/column_view.dart';
 import 'view/container_view.dart';
 import 'view/dashboard_view.dart';
 import 'view/datatable_view.dart';
+import 'view/date_time_view.dart';
 import 'view/display_student_view.dart';
 import 'view/gallery_view.dart';
 import 'view/grid_view.dart';
@@ -54,6 +55,7 @@ class App extends StatelessWidget {
         '/classworkStackViewRoute': (context) => const ClassworkStackView(),
         '/galleryRoute': (context) => GalleryView(),
         '/datatableRoute': (context) => const DataTableView(),
+        '/datetimeRoute': (context) => const DateTimeView(),
       },
     );
   }
