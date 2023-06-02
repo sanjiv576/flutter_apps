@@ -80,6 +80,13 @@ class _LoginViewState extends State<LoginView> {
                   },
                   child: const Text('Go to Batch Screen'),
                 ),
+                gap,
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/courseRoute');
+                  },
+                  child: const Text('Go to Course Screen'),
+                ),
               ],
             ),
           ),

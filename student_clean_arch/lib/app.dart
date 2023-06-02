@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'view/batch_view.dart';
-import 'view/register_view.dart';
+import 'view/course_view.dart';
 import 'view/login_view.dart';
+import 'view/register_view.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -16,6 +17,7 @@ class App extends StatelessWidget {
         '/loginRoute': (context) => const LoginView(),
         '/registerRoute': (context) => const RegisterView(),
         '/batchRoute': (context) => const BatchView(),
+        '/courseRoute': (context) => const CourseView(),
       },
     );
   }
