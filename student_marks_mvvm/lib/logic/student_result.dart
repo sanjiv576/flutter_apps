@@ -22,7 +22,7 @@ class StudentResult {
       : 'Pass';
 
   String division() {
-    final double scoredPercentage = totalMarks() / 400;
+    final double scoredPercentage = totalMarks() / 4;
 
     if (scoredPercentage >= 60) {
       return 'First';
