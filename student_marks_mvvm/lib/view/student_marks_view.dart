@@ -100,6 +100,9 @@ class _StudentMarksViewState extends ConsumerState<StudentMarksView> {
     // change the message for moudle selection
     ref.read(moduleNameProvider.notifier).state = 'Select module';
 
+    // show the add button
+    ref.read(addButtonShowProvider.notifier).state = true;
+
     // empty the student list
     studentState.students = [];
 
