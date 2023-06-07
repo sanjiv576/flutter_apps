@@ -5,6 +5,7 @@ import 'view/add_view.dart';
 import 'view/counter_view.dart';
 import 'view/dashboard_view.dart';
 import 'view/simple_interest_view.dart';
+import 'view/student_view.dart';
 
 void main() {
   runApp(
@@ -19,6 +20,7 @@ void main() {
           '/counter': (context) => const CounterView(),
           '/add': (context) => const AddView(),
           '/simpleInterest': (context) => const SimpleInterestView(),
+          '/studentRoute': (context) => const StudentView(),
         },
       ),
     ),
