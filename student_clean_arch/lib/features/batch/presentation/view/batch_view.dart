@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:student_clean_arch/widget/custom_textformfield_widget.dart';
+import 'package:student_clean_arch/core/common/custom_textformfield_widget.dart';
 
 class BatchView extends StatefulWidget {
   const BatchView({super.key});

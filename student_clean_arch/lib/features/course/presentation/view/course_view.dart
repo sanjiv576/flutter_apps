@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:student_clean_arch/widget/custom_textformfield_widget.dart';
+import 'package:student_clean_arch/core/common/custom_textformfield_widget.dart';
 
 class CourseView extends StatefulWidget {
   const CourseView({super.key});
@@ -28,7 +28,7 @@ class _CourseViewState extends State<CourseView> {
         centerTitle: true,
         backgroundColor: Colors.green,
       ),
-      body: SingleChildScrollView(
+      body: SingleChildScrollView( 
         child: Container(
           margin: const EdgeInsets.all(30),
           child: Form(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../widget/custom_textformfield_widget.dart';
+import '../../../../core/common/custom_textformfield_widget.dart';
+
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});

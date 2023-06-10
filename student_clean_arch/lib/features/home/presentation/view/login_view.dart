@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../widget/custom_textformfield_widget.dart';
+import '../../../../core/common/custom_textformfield_widget.dart';
+
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
