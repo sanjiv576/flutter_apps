@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:student_clean_arch/config/constants/hive_table_constant.dart';
+import 'package:student_clean_arch/features/batch/domain/entity/batch_entity.dart';
 import 'package:uuid/uuid.dart';
 
 // for generating Adapter for solving Binary Form problem, Note: give name file name
@@ -10,7 +11,6 @@ part 'batch_hive_model.g.dart';
 // dart run build_runner build --delete-conflicting-outputs
 
 @HiveType(typeId: HiveTableConstant.batchTableId)
-
 class BatchHiveModel {
   // giving index 0 for id column
   @HiveField(0)
@@ -28,4 +28,23 @@ class BatchHiveModel {
     required this.batchName,
     // insert batch id that is given from UI otherwise if it is null, then, generate id using Uuid
   }) : batchId = batchId ?? const Uuid().v4();
+
+  // convert Hive Object to Entity ==> passing data from Model to Entity
+  BatchEntity toEntity() =>
+      BatchEntity(batchId: batchId, batchName: batchName!);
+
+  // convert Entity to Hive Object  ==> passing data from Entity to Model , where batchId is not sent there
+  BatchHiveModel toHiveModel(BatchEntity entity) => BatchHiveModel(
+        // batchId: entity.batchId,
+        batchName: batchName,
+      );
+
+  // convert Hive List to Entity List
+  List<BatchEntity> toEntityList(List<BatchHiveModel> models) =>
+      models.map((model) => model.toEntity()).toList();
+
+  @override
+  String toString() {
+    return 'batchId: $batchId, batchName: $batchName';
+  }
 }

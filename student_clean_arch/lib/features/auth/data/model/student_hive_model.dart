@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:student_clean_arch/features/auth/domain/entity/student_entity.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../config/constants/hive_table_constant.dart';
@@ -52,4 +53,31 @@ class StudentHiveModel {
             phone: '',
             username: '',
             password: '');
+
+  // convert Hive Object to Entity
+
+  StudentEntity toEntity() => StudentEntity(
+        fname: fname,
+        lname: lname,
+        phone: phone,
+        batch: batch.toEntity(),
+        courses: CourseHiveModel.empty().toEntityList(courses),
+        username: username,
+        password: password,
+      );
+
+  // convert Entity to Hive Object
+  StudentHiveModel toHiveModel(StudentEntity entity) => StudentHiveModel(
+      fname: entity.fname,
+      lname: entity.lname,
+      phone: entity.phone,
+      batch: BatchHiveModel.empty().toHiveModel(entity.batch!),
+      courses: CourseHiveModel.empty().toHiveModelList(entity.courses),
+      username: entity.username,
+      password: entity.password,);
+
+      @override
+  String toString() {
+    return 'studentId: $studentId, fname: $fname, lname: $lname, phone: $phone, batch: $batch, courses: $courses, username: $username, password: $password';
+  }
 }
