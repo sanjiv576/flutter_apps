@@ -68,15 +68,16 @@ class StudentHiveModel {
 
   // convert Entity to Hive Object
   StudentHiveModel toHiveModel(StudentEntity entity) => StudentHiveModel(
-      fname: entity.fname,
-      lname: entity.lname,
-      phone: entity.phone,
-      batch: BatchHiveModel.empty().toHiveModel(entity.batch!),
-      courses: CourseHiveModel.empty().toHiveModelList(entity.courses),
-      username: entity.username,
-      password: entity.password,);
+        fname: entity.fname,
+        lname: entity.lname,
+        phone: entity.phone,
+        batch: BatchHiveModel.empty().toHiveModel(entity.batch!),
+        courses: CourseHiveModel.empty().toHiveModelList(entity.courses),
+        username: entity.username,
+        password: entity.password,
+      );
 
-      @override
+  @override
   String toString() {
     return 'studentId: $studentId, fname: $fname, lname: $lname, phone: $phone, batch: $batch, courses: $courses, username: $username, password: $password';
   }
