@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -5,6 +6,9 @@ import '../../../config/constants/hive_table_constant.dart';
 import '../../../features/auth/data/model/student_hive_model.dart';
 import '../../../features/batch/data/model/batch_hive_model.dart';
 import '../../../features/course/data/model/course_hive_model.dart';
+
+// local data source needs its object
+final hiveServiceProvider = Provider((ref) => HiveService());
 
 class HiveService {
   Future<void> init() async {

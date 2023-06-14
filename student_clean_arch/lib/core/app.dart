@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../features/batch/presentation/view/batch_view.dart';
 import '../features/course/presentation/view/course_view.dart';
-import '../features/home/presentation/view/login_view.dart';
-import '../features/home/presentation/view/register_view.dart';
+import '../features/auth/presentation/view/login_view.dart';
+import '../features/auth/presentation/view/register_view.dart';
 import '../features/splash/presentation/view/splash_view.dart';
 
 class App extends StatelessWidget {

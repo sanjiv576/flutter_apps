@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:student_clean_arch/features/batch/data/model/batch_hive_model.dart';
+import 'package:student_clean_arch/features/batch/domain/entity/batch_entity.dart';
 
 import '../../../../core/common/custom_textformfield_widget.dart';
 
-
-class RegisterView extends StatefulWidget {
+class RegisterView extends ConsumerStatefulWidget {
   const RegisterView({super.key});
 
   @override
-  State<RegisterView> createState() => _RegisterViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _RegisterViewState();
 }
 
-class _RegisterViewState extends State<RegisterView> {
+class _RegisterViewState extends ConsumerState<RegisterView> {
   String textName = 'first name';
   bool hide = false;
   String batchSelected = '';
@@ -19,6 +21,8 @@ class _RegisterViewState extends State<RegisterView> {
 
   List<String> batchList = ['30-A', '30-B', '29-A', '29-B'];
   List<String> courseList = ['Flutter', 'React Js'];
+
+  BatchEntity? _dropDownValueBatch;
 
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
@@ -40,9 +44,10 @@ class _RegisterViewState extends State<RegisterView> {
   }
 
   void submit() {}
-
   @override
   Widget build(BuildContext context) {
+    final batchState = ref.watch(batchHiveModelProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(

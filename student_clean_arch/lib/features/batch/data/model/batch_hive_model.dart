@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:student_clean_arch/config/constants/hive_table_constant.dart';
 import 'package:student_clean_arch/features/batch/domain/entity/batch_entity.dart';
@@ -9,6 +10,8 @@ part 'batch_hive_model.g.dart';
 
 // run this command in terminal, if there any changes in this file
 // dart run build_runner build --delete-conflicting-outputs
+
+final batchHiveModelProvider = Provider((ref) => BatchHiveModel.empty());
 
 @HiveType(typeId: HiveTableConstant.batchTableId)
 class BatchHiveModel {
