@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:student_clean_arch/features/batch/data/model/batch_hive_model.dart';
-import 'package:student_clean_arch/features/batch/domain/entity/batch_entity.dart';
 
 import '../../../../core/common/custom_textformfield_widget.dart';
+import '../../../batch/domain/entity/batch_entity.dart';
+import '../../../batch/presentation/viewmodel/batch_viewmodel.dart';
 
 class RegisterView extends ConsumerStatefulWidget {
   const RegisterView({super.key});
@@ -19,10 +19,8 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   String courseSelected = '';
   final formKey = GlobalKey<FormState>();
 
-  List<String> batchList = ['30-A', '30-B', '29-A', '29-B'];
+  // List<String> batchList = ['30-A', '30-B', '29-A', '29-B'];
   List<String> courseList = ['Flutter', 'React Js'];
-
-  BatchEntity? _dropDownValueBatch;
 
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
@@ -31,6 +29,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   final passwordController = TextEditingController();
 
   SizedBox gap = const SizedBox(height: 20);
+  BatchEntity? _dropDownValueBatch;
 
   @override
   void dispose() {
@@ -46,7 +45,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   void submit() {}
   @override
   Widget build(BuildContext context) {
-    final batchState = ref.watch(batchHiveModelProvider);
+    final batchState = ref.watch(batchViewModelProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -90,19 +89,18 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                     labelText: 'Select batch',
                     border: OutlineInputBorder(),
                   ),
-                  items: batchList
+                  items: batchState.batches
                       .map(
                         (batch) => DropdownMenuItem(
                           value: batch,
-                          child: Text(batch),
+                          child: Text(batch.batchName),
                         ),
                       )
                       .toList(),
                   onChanged: (value) {
                     setState(() {
-                      batchSelected = value!;
+                      _dropDownValueBatch = value;
                     });
-                    print(batchSelected);
                   },
                 ),
                 gap,
