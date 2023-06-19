@@ -1,3 +1,4 @@
+// For API connection : Step 1
 class ApiEndpoints {
   ApiEndpoints._();
 
@@ -5,6 +6,7 @@ class ApiEndpoints {
   static const Duration receiveTimeout = Duration(seconds: 1000);
   //static const String baseUrl = "http://localhost:3000/api/v1/"; // for ios
   static const String baseUrl = "http://10.0.2.2:3000/api/v1/"; // for android
+  // static const String baseUrl = "http://192.168.1.254:3000/api/v1/"; // for android
   // static const String baseUrl =
   //     "http://192.168.4.4:3000/api/v1/"; // ip address
 

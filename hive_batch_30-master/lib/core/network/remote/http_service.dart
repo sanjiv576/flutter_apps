@@ -1,3 +1,5 @@
+// For API connection : Step 2
+
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_and_api_for_class/config/constants/api_endpoint.dart';
@@ -19,7 +21,10 @@ class HttpService {
       ..options.baseUrl = ApiEndpoints.baseUrl
       ..options.connectTimeout = ApiEndpoints.connectionTimeout
       ..options.receiveTimeout = ApiEndpoints.receiveTimeout
+      // DioErrorInterceptor ==> is used to handle the server errors
       ..interceptors.add(DioErrorInterceptor())
+      // this PrettyDioLogger prints the response that come from API.
+      // Note: do only for development environment or deployment we handle this using if else statement
       ..interceptors.add(PrettyDioLogger(
           requestHeader: true, requestBody: true, responseHeader: true))
       ..options.headers = {

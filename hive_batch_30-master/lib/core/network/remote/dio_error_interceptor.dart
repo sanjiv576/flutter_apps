@@ -1,3 +1,5 @@
+// For API connection : Step 3
+
 import 'package:dio/dio.dart';
 
 class DioErrorInterceptor extends Interceptor {
@@ -9,6 +11,7 @@ class DioErrorInterceptor extends Interceptor {
         err = DioException(
           requestOptions: err.requestOptions,
           response: err.response,
+          // Note: message is defined as key in the API when the error is encountered
           error: err.response!.data['message'] ?? err.response!.statusMessage!,
           type: err.type,
         );
@@ -31,7 +34,3 @@ class DioErrorInterceptor extends Interceptor {
     super.onError(err, handler);
   }
 }
-
-
-
-
