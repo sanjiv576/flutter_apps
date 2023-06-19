@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:student_clean_arch/features/course/domain/entity/course_entity.dart';
 
 import '../../../../core/common/custom_textformfield_widget.dart';
 import '../../../batch/domain/entity/batch_entity.dart';
@@ -21,6 +22,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
 
   // List<String> batchList = ['30-A', '30-B', '29-A', '29-B'];
   List<String> courseList = ['Flutter', 'React Js'];
+  // final List<CourseEntity> _courseList = [];
 
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
@@ -46,7 +48,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   @override
   Widget build(BuildContext context) {
     final batchState = ref.watch(batchViewModelProvider);
-
+    // final courseState = ref.watch();
     return Scaffold(
       appBar: AppBar(
         title: const Text(

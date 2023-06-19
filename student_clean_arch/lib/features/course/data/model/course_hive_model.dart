@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:student_clean_arch/config/constants/hive_table_constant.dart';
 import 'package:student_clean_arch/features/course/domain/entity/course_entity.dart';
@@ -6,13 +7,15 @@ import 'package:uuid/uuid.dart';
 // for generating Adapter for solving Binary Form problem, Note: give name file name
 part 'course_hive_model.g.dart';
 
+final courseHiveModelProvider = Provider((ref) => CourseHiveModel.empty);
+
 @HiveType(typeId: HiveTableConstant.courseTableId)
 class CourseHiveModel {
   // giving index 0 for id column
   @HiveField(0)
   final String? courseId;
 
-// giving index 1 for batchName column
+// giving index 1 for courseName column
   @HiveField(1)
   String? courseName;
 
@@ -22,7 +25,7 @@ class CourseHiveModel {
   CourseHiveModel({
     String? courseId,
     required this.courseName,
-    // insert batch id that is given from UI otherwise if it is null, then, generate id using Uuid
+    // insert course id that is given from UI otherwise if it is null, then, generate id using Uuid
   }) : courseId = courseId ?? const Uuid().v4();
 
   // convert Hive Object to Entity ==> passing data from Model to Entity

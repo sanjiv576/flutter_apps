@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  awesome_dio_interceptor:
+    dependency: "direct main"
+    description:
+      name: awesome_dio_interceptor
+      sha256: b65ba5c76f481551683bf0388e8b0a9f87df32f2bcb3f529820729b4fcaa0915
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -145,6 +153,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.1"
+  colorize:
+    dependency: transitive
+    description:
+      name: colorize
+      sha256: "584746cd6ba1cba0633b6720f494fe6f9601c4170f0666c1579d2aa2a61071ba"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   connectivity_plus:
     dependency: "direct main"
     description:
@@ -209,6 +225,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.8"
+  dio:
+    dependency: "direct main"
+    description:
+      name: dio
+      sha256: a9d76e72985d7087eb7c5e7903224ae52b337131518d127c554b9405936752b8
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.2.1+1"
+  equatable:
+    dependency: "direct main"
+    description:
+      name: equatable
+      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.5"
   fake_async:
     dependency: transitive
     description:
@@ -528,6 +560,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
+  pretty_dio_logger:
+    dependency: "direct main"
+    description:
+      name: pretty_dio_logger
+      sha256: "00b80053063935cf9a6190da344c5373b9d0e92da4c944c878ff2fbef0ef6dc2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.1"
   process:
     dependency: transitive
     description:
