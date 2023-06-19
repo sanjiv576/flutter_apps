@@ -1,4 +1,4 @@
-// For API connection : Step 6
+// For API connection : Step 7
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_and_api_for_class/core/failure/failure.dart';

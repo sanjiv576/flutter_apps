@@ -10,9 +10,9 @@ final batchRepositoryProvider = Provider<IBatchRepository>((ref) {
 
   // return ref.read(batchLocalRepoProvider);
 
-// For API connection : Step 7
+// For API connection : Step 8
   // if the interent is available then, read from API
-  return ref.read(batchRemoteRepoProvider);
+  return ref.read(batchRemoteRepoProvider); 
 });
 
 abstract class IBatchRepository {
