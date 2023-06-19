@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/common/custom_snackbar_widget.dart';
 import '../../../../core/common/custom_textformfield_widget.dart';
-
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -25,7 +25,20 @@ class _LoginViewState extends State<LoginView> {
     passwordController.dispose();
   }
 
-  void submit() {}
+  void _resetControllers() {
+    usernameController.clear();
+    passwordController.clear();
+  }
+
+  void submit() {
+    _resetControllers();
+    showSnackbarMessage(
+      contentText: 'Login successfully.',
+      backgroundColor: Colors.green,
+      context: context,
+    );
+    Navigator.pushNamed(context, '/homeRoute');
+  }
 
   @override
   Widget build(BuildContext context) {
