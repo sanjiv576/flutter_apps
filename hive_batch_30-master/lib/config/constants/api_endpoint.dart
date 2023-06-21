@@ -18,7 +18,7 @@ class ApiEndpoints {
   static const String getStudentsByCourse = "auth/getStudentsByCourse/";
   static const String updateStudent = "auth/updateStudent/";
   static const String deleteStudent = "auth/deleteStudent/";
-  static const String uploadImage = "upload/uploadImage";
+  static const String uploadImage = "auth/uploadImage";
 
   // ====================== Batch Routes ======================
   static const String createBatch = "batch/createBatch";

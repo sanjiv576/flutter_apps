@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_and_api_for_class/core/common/snackbar/my_snackbar.dart';
@@ -7,7 +9,9 @@ import 'package:hive_and_api_for_class/features/batch/domain/entity/batch_entity
 import 'package:hive_and_api_for_class/features/batch/presentation/viewmodel/batch_view_model.dart';
 import 'package:hive_and_api_for_class/features/course/domain/entity/course_entity.dart';
 import 'package:hive_and_api_for_class/features/course/presentation/viewmodel/course_viewmodel.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class RegisterView extends ConsumerStatefulWidget {
   const RegisterView({super.key});
@@ -29,6 +33,32 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   final _usernameController = TextEditingController(text: 'kiran');
   final _passwordController = TextEditingController(text: 'kiran123');
   bool isObscure = true;
+
+  checkCameraPermission() async {
+    if (await Permission.camera.request().isRestricted ||
+        await Permission.camera.request().isDenied) {
+      await Permission.camera.request();
+    }
+  }
+
+  File? _img; // take any files like images, pdf, txt
+  Future _browseImage(WidgetRef ref, ImageSource imageSource) async {
+    try {
+      final image = await ImagePicker().pickImage(source: imageSource);
+      if (image != null) {
+        setState(() {
+          _img = File(image.path);
+          // upload image on the server
+          ref.read(authViewModelProvider.notifier).uploadImage(_img);
+        });
+      } else {
+        return;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final batchState = ref.watch(batchViewModelProvider);
@@ -47,6 +77,57 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
               key: _key,
               child: Column(
                 children: [
+                  InkWell(
+                    onTap: () {
+                      showModalBottomSheet(
+                        backgroundColor: Colors.grey[300],
+                        context: context,
+                        isScrollControlled: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(20),
+                          ),
+                        ),
+                        builder: (context) => Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              ElevatedButton.icon(
+                                onPressed: () {
+                                  checkCameraPermission();
+                                  _browseImage(ref, ImageSource.camera);
+                                  Navigator.pop(context);
+                                  // Upload image it is not null
+                                },
+                                icon: const Icon(Icons.camera),
+                                label: const Text('Camera'),
+                              ),
+                              ElevatedButton.icon(
+                                onPressed: () {
+                                  _browseImage(ref, ImageSource.gallery);
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(Icons.image),
+                                label: const Text('Gallery'),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                    child: SizedBox(
+                      height: 200,
+                      width: 200,
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundImage: _img != null
+                            ? FileImage(_img!)
+                            : const AssetImage('assets/images/srk.jpg')
+                                as ImageProvider,
+                      ),
+                    ),
+                  ),
                   TextFormField(
                     controller: _fnameController,
                     decoration: const InputDecoration(
