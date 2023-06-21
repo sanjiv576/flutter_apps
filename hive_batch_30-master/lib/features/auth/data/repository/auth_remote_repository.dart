@@ -26,13 +26,12 @@ class AuthRemoteRepository implements IAuthRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> registerStudent(StudentEntity student) {
-    // TODO: implement registerStudent
-    throw UnimplementedError();
+  Future<Either<Failure, bool>> registerStudent(StudentEntity student) async {
+    return _authRemoteDataSource.registerStudent(student);
   }
 
   @override
-  Future<Either<Failure, String>> uploadProfilePictre(File file) async{
+  Future<Either<Failure, String>> uploadProfilePictre(File file) async {
     return await _authRemoteDataSource.uploadProfilePicture(file);
   }
 }

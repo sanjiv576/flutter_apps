@@ -2,16 +2,19 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive_and_api_for_class/core/common/snackbar/my_snackbar.dart';
-import 'package:hive_and_api_for_class/features/auth/domain/entity/student_entity.dart';
-import 'package:hive_and_api_for_class/features/auth/presentation/viewmodel/auth_view_model.dart';
-import 'package:hive_and_api_for_class/features/batch/domain/entity/batch_entity.dart';
-import 'package:hive_and_api_for_class/features/batch/presentation/viewmodel/batch_view_model.dart';
-import 'package:hive_and_api_for_class/features/course/domain/entity/course_entity.dart';
-import 'package:hive_and_api_for_class/features/course/presentation/viewmodel/course_viewmodel.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+import '../../../../config/router/app_route.dart';
+import '../../../../core/common/snackbar/my_snackbar.dart';
+import '../../../batch/domain/entity/batch_entity.dart';
+import '../../../batch/presentation/viewmodel/batch_view_model.dart';
+import '../../../course/domain/entity/course_entity.dart';
+import '../../../course/presentation/viewmodel/course_viewmodel.dart';
+import '../../domain/entity/student_entity.dart';
+import '../state/auth_state.dart';
+import '../viewmodel/auth_view_model.dart';
 
 class RegisterView extends ConsumerStatefulWidget {
   const RegisterView({super.key});
@@ -48,6 +51,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
       if (image != null) {
         setState(() {
           _img = File(image.path);
+          // print('Image data here $_img');
           // upload image on the server
           ref.read(authViewModelProvider.notifier).uploadImage(_img);
         });
@@ -56,6 +60,34 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
       }
     } catch (e) {
       debugPrint(e.toString());
+    }
+  }
+
+  void _registerSubmit({required AuthState authState}) {
+    StudentEntity student = StudentEntity(
+      fname: _fnameController.text,
+      lname: _lnameController.text,
+      phone: _phoneController.text,
+      username: _usernameController.text,
+      password: _passwordController.text,
+      batch: _dropDownValue,
+      courses: _lstCourseSelected,
+    );
+
+    ref.read(authViewModelProvider.notifier).registerStudent(student);
+
+    if (authState.error == null) {
+      showSnackBar(
+        message: authState.error.toString(),
+        context: context,
+        color: Colors.red,
+      );
+    } else {
+      showSnackBar(
+        message: 'Registered successfully',
+        context: context,
+      );
+      Navigator.popAndPushNamed(context, AppRoute.loginRoute);
     }
   }
 
@@ -280,32 +312,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_key.currentState!.validate()) {
-                          var student = StudentEntity(
-                            fname: _fnameController.text,
-                            lname: _lnameController.text,
-                            phone: _phoneController.text,
-                            username: _usernameController.text,
-                            password: _passwordController.text,
-                            batch: _dropDownValue,
-                            courses: _lstCourseSelected,
-                          );
-
-                          ref
-                              .read(authViewModelProvider.notifier)
-                              .registerStudent(student);
-
-                          if (authState.error != null) {
-                            showSnackBar(
-                              message: authState.error.toString(),
-                              context: context,
-                              color: Colors.red,
-                            );
-                          } else {
-                            showSnackBar(
-                              message: 'Registered successfully',
-                              context: context,
-                            );
-                          }
+                          _registerSubmit(authState: authState);
                         }
                       },
                       child: const Text('Register'),

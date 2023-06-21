@@ -12,6 +12,7 @@ final authViewModelProvider =
   );
 });
 
+// NOte: Ui calls the functions of this class
 class AuthViewModel extends StateNotifier<AuthState> {
   final AuthUseCase _authUseCase;
 
@@ -53,9 +54,12 @@ class AuthViewModel extends StateNotifier<AuthState> {
     state = state.copyWith(isLoading: true);
     var data = await _authUseCase.uploadProfilePictre(file!);
 
+// left
     data.fold((l) {
       state = state.copyWith(isLoading: false, error: l.error);
-    }, (imageName) {
+    },
+        // right folod
+        (imageName) {
       state =
           state.copyWith(isLoading: false, error: null, imageName: imageName);
     });
