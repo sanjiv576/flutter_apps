@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_and_api_for_class/core/shared_prefs/user_shared_prefs.dart';
 
 import '../../../../config/constants/api_endpoint.dart';
 import '../../../../core/failure/failure.dart';
@@ -11,14 +12,20 @@ import '../../domain/entity/student_entity.dart';
 
 final authRemoteDataSourceProvider = Provider(
   (ref) {
-    return AuthRemoteDataSource(dio: ref.read(httpServiceProvider));
+    return AuthRemoteDataSource(
+        dio: ref.read(httpServiceProvider),
+        userSharedPrefs: ref.read(userSharedPrefsProvider));
   },
 );
 
 // Step 4camera
 class AuthRemoteDataSource {
   final Dio dio;
-  AuthRemoteDataSource({required this.dio});
+
+  // create instance of userSharedPrefs because to get token
+  final UserSharedPrefs userSharedPrefs;
+
+  AuthRemoteDataSource({required this.dio, required this.userSharedPrefs});
 
   Future<Either<Failure, bool>> registerStudent(StudentEntity student) async {
     try {
@@ -36,6 +43,48 @@ class AuthRemoteDataSource {
         },
       );
       if (response.statusCode == 200) {
+        // receive token
+
+        String token = response.data['token'];
+        // set token in the shared prefs
+        await userSharedPrefs.setUserToken(token);
+        return const Right(true);
+      } else {
+        return Left(
+          Failure(
+            error: response.data["message"],
+            statusCode: response.statusCode.toString(),
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return Left(
+        Failure(
+          error: e.error.toString(),
+          statusCode: e.response?.statusCode.toString() ?? '0',
+        ),
+      );
+    }
+  }
+
+  // for login
+
+  Future<Either<Failure, bool>> loginStudent(
+    String username,
+    String password,
+  ) async {
+    try {
+      Response response = await dio.post(
+        ApiEndpoints.login,
+        data: {
+          "username": username,
+          "password": password,
+        },
+      );
+      if (response.statusCode == 200) {
+        // retrieve token
+        String token = response.data["token"];
+        await userSharedPrefs.setUserToken(token);
         return const Right(true);
       } else {
         return Left(

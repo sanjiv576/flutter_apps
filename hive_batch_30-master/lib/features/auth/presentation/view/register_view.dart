@@ -76,7 +76,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
 
     ref.read(authViewModelProvider.notifier).registerStudent(student);
 
-    if (authState.error == null) {
+    if (authState.error != null) {
       showSnackBar(
         message: authState.error.toString(),
         context: context,

@@ -21,8 +21,7 @@ class AuthRemoteRepository implements IAuthRepository {
 
   @override
   Future<Either<Failure, bool>> loginStudent(String username, String password) {
-    // TODO: implement loginStudent
-    throw UnimplementedError();
+    return _authRemoteDataSource.loginStudent(username, password);
   }
 
   @override

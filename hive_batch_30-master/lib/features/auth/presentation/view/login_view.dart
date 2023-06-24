@@ -79,25 +79,28 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       key: const ValueKey('loginButton'),
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          bool isLogin = await ref
+                          await ref
                               .read(authViewModelProvider.notifier)
                               .loginStudent(
+                                context,
                                 _usernameController.text,
                                 _passwordController.text,
                               );
 
+                              // below code is done by view model
+
                           // We don't use Navigator and Snackbar here, but for
                           // time being, we will use it.
-                          if (isLogin) {
-                            Navigator.pushNamed(context, AppRoute.homeRoute);
-                          } else {
-                            showSnackBar(
-                              message:
-                                  'Either username or password is incorrect',
-                              context: context,
-                              color: Colors.red,
-                            );
-                          }
+                        //   if (isLogin) {
+                        //     Navigator.pushNamed(context, AppRoute.homeRoute);
+                        //   } else {
+                        //     showSnackBar(
+                        //       message:
+                        //           'Either username or password is incorrect',
+                        //       context: context,
+                        //       color: Colors.red,
+                        //     );
+                        //   }
                         }
                       },
                       child: const SizedBox(

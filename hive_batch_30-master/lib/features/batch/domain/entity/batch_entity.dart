@@ -11,4 +11,6 @@ class BatchEntity {
         batchId: json["batchId"],
         batchName: json["batchName"],
       );
+
+      
 }
