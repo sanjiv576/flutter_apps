@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../config/router/app_route.dart';
 import '../viewmodel/splash_viewmodel.dart';
 
 class SplashView extends ConsumerStatefulWidget {
@@ -15,9 +16,11 @@ class _SplashViewState extends ConsumerState<SplashView> {
   void initState() {
     Future.delayed(const Duration(seconds: 2), () {
       // Navigator.popAndPushNamed(context, AppRoute.loginRoute);
+
+      // this decides whether user is already logged in or not
+
+      ref.read(splashViewModelProvider.notifier).init(context);
     });
-    // this decides whether user is already logged in or not
-    ref.read(splashViewModelProvider.notifier).init(context);
 
     super.initState();
   }
