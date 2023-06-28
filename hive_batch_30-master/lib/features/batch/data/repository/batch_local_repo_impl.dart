@@ -27,4 +27,10 @@ class BatchLocalRepositoryImpl implements IBatchRepository {
   Future<Either<Failure, List<BatchEntity>>> getAllBatches() {
     return batchLocalDataSource.getAllBatches();
   }
+  
+  @override
+  Future<Either<Failure, bool>> deleteBatch(String batchId) {
+    // TODO: implement deleteBatch
+    throw UnimplementedError();
+  }
 }

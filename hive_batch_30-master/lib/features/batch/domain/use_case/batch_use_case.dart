@@ -22,4 +22,8 @@ class BatchUseCase {
   Future<Either<Failure, bool>> addBatch(BatchEntity batch) {
     return batchRepository.addBatch(batch);
   }
+
+  Future<Either<Failure, bool>> deleteBatch(String batchId) {
+    return batchRepository.deleteBatch(batchId);
+  }
 }

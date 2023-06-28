@@ -28,4 +28,9 @@ class CourseRemoteRepImpl implements ICourseRepository {
   Future<Either<Failure, List<CourseEntity>>> getAllCourses() {
     return courseRemoteDataSource.getAllCourses();
   }
+
+  @override
+  Future<Either<Failure, bool>> deleteCourse(String courseId) {
+    return courseRemoteDataSource.deleteCourse(courseId);
+  }
 }

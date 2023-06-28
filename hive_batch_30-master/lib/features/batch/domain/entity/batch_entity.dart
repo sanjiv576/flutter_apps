@@ -8,8 +8,8 @@ class BatchEntity {
   });
 
   factory BatchEntity.fromJson(Map<String, dynamic> json) => BatchEntity(
-        batchId: json["batchId"],
-        batchName: json["batchName"],
+        batchId: json["batchId"] as String?,
+        batchName: json["batchName"] as String,
       );
 
       

@@ -4,6 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entity/course_entity.dart';
 
 part 'course_api_model.g.dart';
+// Step 3delete
 
 final courseApiModelProvider = Provider((ref) => CourseApiModel.empty());
 
@@ -49,8 +50,10 @@ class CourseApiModel {
   // toJson  ==> data send to API
 
   Map<String, dynamic> toJson() => _$CourseApiModelToJson(this);
+
+
   @override
   String toString() {
-    return 'courseId: $courseId, batchName: $courseName';
+    return 'courseId: $courseId, courseName: $courseName';
   }
 }

@@ -1,9 +1,9 @@
-
 // For API connection : Step 6
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_and_api_for_class/config/constants/api_endpoint.dart';
+import 'package:hive_and_api_for_class/core/shared_prefs/user_shared_prefs.dart';
 import 'package:hive_and_api_for_class/features/batch/data/dto/get_all_batch_dto.dart';
 
 import '../../../../core/failure/failure.dart';
@@ -11,11 +11,12 @@ import '../../../../core/network/remote/http_service.dart';
 import '../../domain/entity/batch_entity.dart';
 import '../model/batch_api_model.dart';
 
-final batchRemoteDataSourceProvider = Provider.autoDispose(
+final batchRemoteDataSourceProvider = Provider(
   (ref) {
     return BatchRemoteDataSource(
       dio: ref.read(httpServiceProvider),
       batchApiModel: ref.read(batchApiModelProvider),
+      userSharedPrefs: ref.read(userSharedPrefsProvider),
     );
   },
 );
@@ -27,7 +28,12 @@ class BatchRemoteDataSource {
 // creating instance of batch api model to use toJson and fromJson methods
   final BatchApiModel batchApiModel;
 
-  BatchRemoteDataSource({required this.dio, required this.batchApiModel});
+  final UserSharedPrefs userSharedPrefs;
+
+  BatchRemoteDataSource(
+      {required this.dio,
+      required this.batchApiModel,
+      required this.userSharedPrefs});
 
 // add batch
   Future<Either<Failure, bool>> addBatch(BatchEntity batch) async {
@@ -77,6 +83,43 @@ class BatchRemoteDataSource {
       }
     } on DioException catch (e) {
       return Left(Failure(error: e.message.toString()));
+    }
+  }
+
+  Future<Either<Failure, bool>> deleteBatch(String batchId) async {
+    try {
+      // get the token from the shared prefs
+      String? token;
+      var data = await userSharedPrefs.getUserToken();
+
+      data.fold((l) => token = null, (r) => token = r!);
+
+      // delete from the server
+      Response response = await dio.delete(
+        ApiEndpoints.deleteBatch + batchId,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        return const Right(true);
+      } else {
+        return Left(
+          Failure(
+            error: response.data["message"],
+            statusCode: response.statusCode.toString(),
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return Left(
+        Failure(
+          error: e.error.toString(),
+          statusCode: e.response?.statusCode.toString() ?? '0',
+        ),
+      );
     }
   }
 }
