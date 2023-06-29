@@ -45,7 +45,7 @@ class CourseRemoteDataSource {
       );
 
       // check status
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         return const Right(true);
       }
       // if it is not successful to create new course
@@ -120,6 +120,47 @@ class CourseRemoteDataSource {
           error: e.error.toString(),
           statusCode: e.response?.statusCode.toString() ?? '0',
         ),
+      );
+    }
+  }
+
+  // update course by its id
+
+  Future<Either<Failure, bool>> updateCourse(
+      String courseId, CourseEntity course) async {
+    try {
+      // get the user token from the shared prefs
+      String? token;
+
+      Either<Failure, String?> data = await userSharedPrefs.getUserToken();
+      data.fold((l) => token = null, (r) => token = r!);
+
+      // update code
+      Response res = await dio.put(
+        ApiEndpoints.updateCourse + courseId,
+        data: {"courseName": course.courseName},
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+
+      if (res.statusCode == 200) {
+        return const Right(true);
+      } else {
+        return Left(
+          Failure(
+            error: res.data['message'],
+            statusCode: res.statusCode.toString(),
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return Left(
+        Failure(
+            error: e.error.toString(),
+            statusCode: e.response?.statusCode.toString() ?? '0'),
       );
     }
   }

@@ -24,4 +24,6 @@ abstract class ICourseRepository {
 
   //  Step 1delete for deleteing
   Future<Either<Failure, bool>> deleteCourse(String courseId);
+
+  Future<Either<Failure, bool>> updateCourse(String courseId, CourseEntity course);
 }

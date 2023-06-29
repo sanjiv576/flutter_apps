@@ -18,13 +18,28 @@ class BatchViewModel extends StateNotifier<BatchState> {
     getAllBatches();
   }
 
-  addBatch(BatchEntity batch) async {
+  addBatch(BatchEntity batch, BuildContext context) async {
     state.copyWith(isLoading: true);
     var data = await batchUseCase.addBatch(batch);
 
     data.fold(
-      (l) => state = state.copyWith(isLoading: false, error: l.error),
-      (r) => state = state.copyWith(isLoading: false, error: null),
+      (l) {
+        state = state.copyWith(isLoading: false, error: l.error);
+        showSnackBar(
+          message: 'Error: ${l.error}',
+          context: context,
+          color: Colors.red,
+        );
+      },
+      (r) {
+        // add new batch in the state as well
+        state.batches.add(batch);
+        state = state.copyWith(isLoading: false, error: null);
+        showSnackBar(
+          message: 'New batch added successfully',
+          context: context,
+        );
+      },
     );
   }
 
@@ -43,7 +58,7 @@ class BatchViewModel extends StateNotifier<BatchState> {
 
     var data = await batchUseCase.deleteBatch(batch.batchId!);
 
-     data.fold(
+    data.fold(
       (l) {
         showSnackBar(message: l.error, context: context, color: Colors.red);
 
@@ -59,5 +74,21 @@ class BatchViewModel extends StateNotifier<BatchState> {
         );
       },
     );
+  }
+
+  Future<void> updateBatch(String batchId, BatchEntity batch) async {
+    state = state.copyWith(isLoading: true);
+
+    var data = await batchUseCase.updateBatch(batchId, batch);
+
+    data.fold((l) => state = state.copyWith(isLoading: false, error: l.error),
+        (r) {
+      // remove from the list
+      state.batches.removeWhere((batch) => batch.batchId == batchId);
+      // append the updated batch in the list
+      state.batches.add(batch);
+      // off the loading
+      state = state.copyWith(isLoading: false, error: null);
+    });
   }
 }

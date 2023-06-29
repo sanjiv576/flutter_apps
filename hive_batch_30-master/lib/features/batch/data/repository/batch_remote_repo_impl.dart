@@ -33,4 +33,9 @@ class BatchRemoteRepoImpl implements IBatchRepository {
   Future<Either<Failure, bool>> deleteBatch(String batchId) {
     return batchRemoteDataSource.deleteBatch(batchId);
   }
+
+  @override
+  Future<Either<Failure, bool>> updateBatch(String batchId, BatchEntity batch) {
+    return batchRemoteDataSource.updateBatch(batchId, batch);
+  }
 }

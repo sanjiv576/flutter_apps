@@ -25,10 +25,17 @@ class LocalCourseRepositoryImpl implements ICourseRepository {
   Future<Either<Failure, List<CourseEntity>>> getAllCourses() {
     return courseLocalDataSource.getAllCourses();
   }
-  
+
   @override
   Future<Either<Failure, bool>> deleteCourse(String courseId) {
     // TODO: implement deleteCourse
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, bool>> updateCourse(
+      String courseId, CourseEntity course) {
+    // TODO: implement updateCourse
     throw UnimplementedError();
   }
 }

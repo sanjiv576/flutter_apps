@@ -44,18 +44,26 @@ class BatchRemoteDataSource {
           "batchName": batch.batchName,
         },
       );
-
       // check status
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         return const Right(true);
       }
 
       // if failed to POST new batch
       else {
-        return Left(Failure(error: response.statusMessage.toString()));
+        return Left(
+          Failure(
+            error: response.data['message'],
+            statusCode: response.statusCode.toString(),
+          ),
+        );
       }
     } on DioException catch (e) {
-      return Left(Failure(error: e.message.toString()));
+      return Left(
+        Failure(
+          error: e.message.toString(),
+        ),
+      );
     }
   }
 
@@ -82,7 +90,12 @@ class BatchRemoteDataSource {
         return Left(Failure(error: response.statusMessage.toString()));
       }
     } on DioException catch (e) {
-      return Left(Failure(error: e.message.toString()));
+      return Left(
+        Failure(
+          error: e.message.toString(),
+          statusCode: e.response?.statusCode.toString() ?? '0',
+        ),
+      );
     }
   }
 
@@ -119,6 +132,42 @@ class BatchRemoteDataSource {
           error: e.error.toString(),
           statusCode: e.response?.statusCode.toString() ?? '0',
         ),
+      );
+    }
+  }
+
+  // update batch by its id
+  Future<Either<Failure, bool>> updateBatch(
+      String batchId, BatchEntity batch) async {
+    try {
+      // get user token from shared prefs
+      String? token;
+      var data = await userSharedPrefs.getUserToken();
+      data.fold((l) => token = null, (r) => token = r!);
+
+      Response res = await dio.put(
+        ApiEndpoints.updateBatch + batchId,
+        data: {"batchName": batch.batchName},
+        options: Options(
+          headers: {'Authorization': 'Bearer $token'},
+        ),
+      );
+
+      if (res.statusCode == 200) {
+        return const Right(true);
+      } else {
+        return Left(
+          Failure(
+            error: res.statusMessage.toString(),
+            statusCode: res.statusCode.toString(),
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return Left(
+        Failure(
+            error: e.error.toString(),
+            statusCode: e.response?.statusCode.toString() ?? '0'),
       );
     }
   }

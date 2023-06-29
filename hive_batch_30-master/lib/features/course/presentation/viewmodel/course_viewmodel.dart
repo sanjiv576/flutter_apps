@@ -25,7 +25,11 @@ class CourseViewModel extends StateNotifier<CourseState> {
 
     data.fold(
       (l) => state = state.copyWith(isLoading: false, error: l.error),
-      (r) => state = state.copyWith(isLoading: false, error: null),
+      (r) {
+        // add new course in the state as well
+        state.courses.add(course);
+        state = state.copyWith(isLoading: false, error: null);
+      },
     );
   }
 
@@ -68,5 +72,21 @@ class CourseViewModel extends StateNotifier<CourseState> {
         );
       },
     );
+  }
+
+  // update a course
+  Future<void> updateCourse(String courseId, CourseEntity course) async {
+    state = state.copyWith(isLoading: true);
+
+    var data = await courseUsecase.updateCourse(courseId, course);
+    data.fold((l) => state = state.copyWith(isLoading: false, error: l.error),
+        (r) {
+      // remove from the list
+      state.courses.removeWhere((element) => element.courseId == courseId);
+      // add the updated value in the end of the list
+      state.courses.add(course);
+
+      state = state.copyWith(isLoading: false, error: null);
+    });
   }
 }

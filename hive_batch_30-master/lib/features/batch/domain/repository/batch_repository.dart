@@ -22,4 +22,5 @@ abstract class IBatchRepository {
   Future<Either<Failure, List<BatchEntity>>> getAllBatches();
   Future<Either<Failure, bool>> addBatch(BatchEntity batch);
   Future<Either<Failure, bool>> deleteBatch(String batchId);
+  Future<Either<Failure, bool>> updateBatch(String batchId, BatchEntity batch);
 }

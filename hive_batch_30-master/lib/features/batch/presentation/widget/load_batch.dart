@@ -22,7 +22,7 @@ class LoadBatch extends StatelessWidget {
                 context: context,
                 builder: (context) => AlertDialog(
                   title: Text(
-                      'Are you sure you want to delete ${lstBatches[index].batchName}?'),
+                      'Are you sure you want to delete ${lstBatches[index].batchName} at index $index?'),
                   actions: [
                     TextButton(
                         onPressed: () {

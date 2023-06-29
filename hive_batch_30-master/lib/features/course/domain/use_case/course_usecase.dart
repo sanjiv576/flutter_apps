@@ -30,4 +30,9 @@ class CourseUseCase {
   Future<Either<Failure, bool>> deleteCourse(String id) async {
     return courseRepository.deleteCourse(id);
   }
+
+  Future<Either<Failure, bool>> updateCourse(
+      String courseId, CourseEntity course) {
+    return courseRepository.updateCourse(courseId, course);
+  }
 }

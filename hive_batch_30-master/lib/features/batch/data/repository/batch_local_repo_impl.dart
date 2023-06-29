@@ -33,4 +33,10 @@ class BatchLocalRepositoryImpl implements IBatchRepository {
     // TODO: implement deleteBatch
     throw UnimplementedError();
   }
+  
+  @override
+  Future<Either<Failure, bool>> updateBatch(String batchId, BatchEntity batch) {
+    // TODO: implement updateBatch
+    throw UnimplementedError();
+  }
 }
