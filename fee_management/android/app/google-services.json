@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "922307410643",
+    "project_id": "table-reservation-system-8c18b",
+    "storage_bucket": "table-reservation-system-8c18b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922307410643:android:cb2b90c96b7b5630173226",
+        "android_client_info": {
+          "package_name": "com.sanjivShrestha.tableReservationApp.table_reservation_mobile_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "922307410643-mo1vof03tj9urlmnmldrehfquflch3tf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjStu1c2bQVia-EJl562Gzk5zowR25018"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "922307410643-mo1vof03tj9urlmnmldrehfquflch3tf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
