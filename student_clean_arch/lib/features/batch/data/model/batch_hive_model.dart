@@ -11,7 +11,7 @@ part 'batch_hive_model.g.dart';
 // run this command in terminal, if there any changes in this file
 // dart run build_runner build --delete-conflicting-outputs
 
-final batchHiveModelProvider = Provider((ref) => BatchHiveModel.empty());
+final batchHiveModelProvider = Provider.autoDispose((ref) => BatchHiveModel.empty());
 
 @HiveType(typeId: HiveTableConstant.batchTableId)
 class BatchHiveModel {

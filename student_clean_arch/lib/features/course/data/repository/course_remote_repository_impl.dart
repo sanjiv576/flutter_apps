@@ -5,7 +5,7 @@ import 'package:student_clean_arch/features/course/data/data_sources/course_remo
 import 'package:student_clean_arch/features/course/domain/entity/course_entity.dart';
 import 'package:student_clean_arch/features/course/domain/repository/course_repository.dart';
 
-final courseRemoteRepoImplProvider = Provider((ref) {
+final courseRemoteRepoImplProvider = Provider.autoDispose((ref) {
   return CourseRemoteRepoImp(
     courseRemoteDataSource: ref.read(courseRemoteDataSourceProvider),
   );

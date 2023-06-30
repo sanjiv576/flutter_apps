@@ -6,7 +6,7 @@ import 'package:student_clean_arch/features/batch/data/repository/batch_remote_r
 import '../../../../core/failure/failure.dart';
 import '../entity/batch_entity.dart';
 
-final batchRepositoryProvider = Provider<IBatchRepository>((ref) {
+final batchRepositoryProvider = Provider.autoDispose<IBatchRepository>((ref) {
   // return local repo implementation
   // for internet connectivity we will check later
   // return ref.read(batchLocalRepoProvider);

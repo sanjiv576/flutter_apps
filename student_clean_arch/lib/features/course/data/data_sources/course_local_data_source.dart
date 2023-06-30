@@ -9,7 +9,7 @@ import '../model/course_hive_model.dart';
 // injecting hiveService and batchHiveModel in BatchLocalDataSource
 // ref is used to read from another Provider to Provider
 
-final courseLocalDataSourceProvider = Provider<CourseLocalDataSource>((ref) {
+final courseLocalDataSourceProvider = Provider.autoDispose<CourseLocalDataSource>((ref) {
   return CourseLocalDataSource(
     hiveService: ref.read(hiveServiceProvider),
     courseHiveModel: ref.read(courseHiveModelProvider),

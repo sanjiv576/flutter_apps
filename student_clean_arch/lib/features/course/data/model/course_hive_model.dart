@@ -7,7 +7,7 @@ import 'package:uuid/uuid.dart';
 // for generating Adapter for solving Binary Form problem, Note: give name file name
 part 'course_hive_model.g.dart';
 
-final courseHiveModelProvider = Provider((ref) => CourseHiveModel.empty());
+final courseHiveModelProvider = Provider.autoDispose((ref) => CourseHiveModel.empty());
 
 @HiveType(typeId: HiveTableConstant.courseTableId)
 class CourseHiveModel {

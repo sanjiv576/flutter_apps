@@ -5,7 +5,7 @@ import 'package:student_clean_arch/features/batch/data/data_sources/batch_remote
 import 'package:student_clean_arch/features/batch/domain/entity/batch_entity.dart';
 import 'package:student_clean_arch/features/batch/domain/repository/batch_repository.dart';
 
-final batchRemoteRepoImplProvider = Provider((ref) {
+final batchRemoteRepoImplProvider = Provider.autoDispose((ref) {
   return BatchRemoteRepoImpl(
     batchRemoteDataSource: ref.read(batchRemoteDataSourceProvider),
   );

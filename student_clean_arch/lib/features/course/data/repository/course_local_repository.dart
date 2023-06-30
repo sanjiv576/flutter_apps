@@ -6,7 +6,7 @@ import '../../../../core/failure/failure.dart';
 import '../../domain/entity/course_entity.dart';
 import '../../domain/repository/course_repository.dart';
 
-final courseLocalRepoProivder = Provider<ICourseRepository>(
+final courseLocalRepoProivder = Provider.autoDispose<ICourseRepository>(
   (ref) {
     return CourseLocalRepositoryImpl(
         courseLocalDataSource: ref.read(courseLocalDataSourceProvider));

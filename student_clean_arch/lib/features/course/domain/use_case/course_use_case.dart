@@ -5,7 +5,7 @@ import 'package:student_clean_arch/features/course/domain/repository/course_repo
 
 import '../../../../core/failure/failure.dart';
 
-final courseUseCaseProvider = Provider<CourseUseCase>((ref) {
+final courseUseCaseProvider = Provider.autoDispose<CourseUseCase>((ref) {
   return CourseUseCase(courseRepository: ref.read(courseRepositoryProvider));
 });
 

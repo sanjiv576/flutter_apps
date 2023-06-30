@@ -6,7 +6,7 @@ import '../../../../core/failure/failure.dart';
 import '../../domain/entity/batch_entity.dart';
 import '../../domain/repository/batch_repository.dart';
 
-final batchLocalRepoProvider = Provider<IBatchRepository>(
+final batchLocalRepoProvider = Provider.autoDispose<IBatchRepository>(
   (ref) {
     return BatchLocalRepositoryImpl(
       batchLocalDataSource: ref.read(batchLocalDataSourceProvider),

@@ -5,7 +5,7 @@ import '../../../../core/failure/failure.dart';
 import '../entity/batch_entity.dart';
 import '../repository/batch_repository.dart';
 
-final batchUseCaseProvider = Provider<BatchUseCase>((ref) {
+final batchUseCaseProvider = Provider.autoDispose<BatchUseCase>((ref) {
   return BatchUseCase(batchRepository: ref.read(batchRepositoryProvider));
 });
 

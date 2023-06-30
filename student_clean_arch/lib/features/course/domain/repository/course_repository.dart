@@ -6,7 +6,7 @@ import 'package:student_clean_arch/features/course/data/repository/course_remote
 import '../../../../core/failure/failure.dart';
 import '../entity/course_entity.dart';
 
-final courseRepositoryProvider = Provider<ICourseRepository>((ref) {
+final courseRepositoryProvider = Provider.autoDispose<ICourseRepository>((ref) {
   // return local repo implementation
   // for internet connectivity we will check later
   // return ref.read(courseLocalRepoProivder);

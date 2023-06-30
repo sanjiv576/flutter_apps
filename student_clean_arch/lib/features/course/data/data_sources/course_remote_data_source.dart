@@ -8,7 +8,7 @@ import 'package:student_clean_arch/features/course/data/dto/get_all_course_dto.d
 import 'package:student_clean_arch/features/course/data/model/course_api_model.dart';
 import 'package:student_clean_arch/features/course/domain/entity/course_entity.dart';
 
-final courseRemoteDataSourceProvider = Provider((ref) {
+final courseRemoteDataSourceProvider = Provider.autoDispose((ref) {
   return CourseRemoteDataSource(
     dio: ref.read(httpServiceProvider),
     courseApiModel: ref.read(courseApiModelProvider),
