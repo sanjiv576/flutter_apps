@@ -7,10 +7,10 @@ import '../../domain/entity/batch_entity.dart';
 // termainal command to generate files : dart run build_runner build --delete-conflicting-outputs
 part 'batch_api_model.g.dart';
 
+final batchApiModelProvider = Provider.autoDispose((ref) => BatchApiModel.empty());
+
 @JsonSerializable() // for mapping _id (from API) and batchId (in Dart)
 // this class only for _id and batchName object that come from API 'data'
-
-final batchApiModelProvider = Provider((ref) => BatchApiModel.empty());
 
 class BatchApiModel {
   // mapping _id and batchId
@@ -39,7 +39,7 @@ class BatchApiModel {
   // convert Entity to Hive Object  ==> passing data from Entity to Model , where batchId is not sent there
   BatchApiModel toHiveModel(BatchEntity entity) => BatchApiModel(
         batchId: entity.batchId,
-        batchName: batchName,
+        batchName: entity.batchName,
       );
 
   // convert Hive List to Entity List

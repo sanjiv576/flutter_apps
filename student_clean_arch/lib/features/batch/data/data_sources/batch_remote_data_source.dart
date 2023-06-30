@@ -8,7 +8,7 @@ import 'package:student_clean_arch/features/batch/data/dto/get_all_batch_dto.dar
 import 'package:student_clean_arch/features/batch/data/model/batch_api_model.dart';
 import 'package:student_clean_arch/features/batch/domain/entity/batch_entity.dart';
 
-final batchRemoteDataSourceProvider = Provider(
+final batchRemoteDataSourceProvider = Provider.autoDispose(
   (ref) => BatchRemoteDataSource(
     dio: ref.read(httpServiceProvider),
     batchApiModel: ref.read(batchApiModelProvider),
