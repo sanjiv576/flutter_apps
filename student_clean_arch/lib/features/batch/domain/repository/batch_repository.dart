@@ -16,6 +16,6 @@ abstract class IBatchRepository {
   // abstract method for getting all batches
   Future<Either<Failure, List<BatchEntity>>> getAllBatches();
 
-  // abbstract method for adding batch
+  // abstract method for adding batch
   Future<Either<Failure, bool>> addBatch(BatchEntity batch);
 }

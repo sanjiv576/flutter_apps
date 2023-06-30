@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_clean_arch/config/router/app_routes.dart';
 
 import '../../../../core/common/custom_snackbar_widget.dart';
 import '../../../../core/common/custom_textformfield_widget.dart';
@@ -37,7 +38,7 @@ class _LoginViewState extends State<LoginView> {
       backgroundColor: Colors.green,
       context: context,
     );
-    Navigator.pushNamed(context, '/homeRoute');
+    Navigator.pushNamed(context, AppRoutes.homeRoute);
   }
 
   @override
@@ -83,21 +84,21 @@ class _LoginViewState extends State<LoginView> {
                 gap,
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/registerRoute');
+                    Navigator.pushNamed(context, AppRoutes.registerRoute);
                   },
                   child: const Text('Go to Register Screen'),
                 ),
                 gap,
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/batchRoute');
+                    Navigator.pushNamed(context, AppRoutes.batchRoute);
                   },
                   child: const Text('Go to Batch Screen'),
                 ),
                 gap,
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/courseRoute');
+                    Navigator.pushNamed(context, AppRoutes.courseRoute);
                   },
                   child: const Text('Go to Course Screen'),
                 ),

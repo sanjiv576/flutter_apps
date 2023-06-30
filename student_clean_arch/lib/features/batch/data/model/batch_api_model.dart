@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../domain/entity/batch_entity.dart';
@@ -9,6 +10,8 @@ part 'batch_api_model.g.dart';
 @JsonSerializable() // for mapping _id (from API) and batchId (in Dart)
 // this class only for _id and batchName object that come from API 'data'
 
+final batchApiModelProvider = Provider((ref) => BatchApiModel.empty());
+
 class BatchApiModel {
   // mapping _id and batchId
   @JsonKey(name: '_id')
@@ -16,6 +19,9 @@ class BatchApiModel {
   final String batchName;
 
   BatchApiModel({required this.batchId, required this.batchName});
+
+  // initial values
+  BatchApiModel.empty() : this(batchId: '', batchName: '');
 
   // fromJson  ==> data come from API
   factory BatchApiModel.fromJson(Map<String, dynamic> json) =>

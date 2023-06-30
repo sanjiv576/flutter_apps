@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:student_clean_arch/features/course/presentation/viewmodel/course_viewmodel.dart';
 
+import '../../../../config/router/app_routes.dart';
 import '../../../../core/common/custom_snackbar_widget.dart';
 import '../../../../core/common/custom_textformfield_widget.dart';
 import '../../../batch/domain/entity/batch_entity.dart';
@@ -64,7 +65,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
     );
 
     _resetControllers();
-    Navigator.popAndPushNamed(context, '/loginRoute');
+    Navigator.popAndPushNamed(context, AppRoutes.loginRoute);
   }
 
   @override

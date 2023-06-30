@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../config/router/app_routes.dart';
+
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -13,7 +15,7 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.popAndPushNamed(context, '/loginRoute');
+      Navigator.popAndPushNamed(context, AppRoutes.loginRoute);
     });
   }
 

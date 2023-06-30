@@ -24,7 +24,7 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
+        child: ListView(
           children: [
             const Align(
               alignment: Alignment.centerLeft,
