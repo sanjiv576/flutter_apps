@@ -1,3 +1,4 @@
+import 'package:hive_and_api_for_class/features/arithmetic/arithmetic_view.dart';
 import 'package:hive_and_api_for_class/features/auth/presentation/view/login_view.dart';
 import 'package:hive_and_api_for_class/features/auth/presentation/view/register_view.dart';
 import 'package:hive_and_api_for_class/features/course/presentation/view/add_course_view.dart';
@@ -12,6 +13,7 @@ class AppRoute {
   static const String loginRoute = '/login';
   static const String registerRoute = '/register';
   static const String addCourseRoute = '/addCourse';
+  static const String arithmeticRoute = '/arithmetic';
 
   static getApplicationRoute() {
     return {
@@ -20,6 +22,7 @@ class AppRoute {
       homeRoute: (context) => const HomeView(),
       registerRoute: (context) => const RegisterView(),
       addCourseRoute: (context) => const AddCourseView(),
+      arithmeticRoute: (context) => const ArithmeticView(),
     };
   }
 }

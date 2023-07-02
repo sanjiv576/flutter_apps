@@ -51,6 +51,7 @@ dependencies:
   image_picker: ^0.8.9
   permission_handler: ^10.3.0
   jwt_decoder: ^2.0.1
+  test_cov_console: ^0.2.2
 
 dev_dependencies:
   flutter_test:

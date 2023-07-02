@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_and_api_for_class/config/router/app_route.dart';
-import 'package:hive_and_api_for_class/core/common/snackbar/my_snackbar.dart';
 import 'package:hive_and_api_for_class/features/auth/presentation/viewmodel/auth_view_model.dart';
 
 class LoginView extends ConsumerStatefulWidget {
@@ -20,8 +19,6 @@ class _LoginViewState extends ConsumerState<LoginView> {
   final _gap = const SizedBox(height: 8);
   bool isObscure = true;
 
-
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,20 +84,20 @@ class _LoginViewState extends ConsumerState<LoginView> {
                                 _passwordController.text,
                               );
 
-                              // below code is done by view model
+                          // below code is done by view model
 
                           // We don't use Navigator and Snackbar here, but for
                           // time being, we will use it.
-                        //   if (isLogin) {
-                        //     Navigator.pushNamed(context, AppRoute.homeRoute);
-                        //   } else {
-                        //     showSnackBar(
-                        //       message:
-                        //           'Either username or password is incorrect',
-                        //       context: context,
-                        //       color: Colors.red,
-                        //     );
-                        //   }
+                          //   if (isLogin) {
+                          //     Navigator.pushNamed(context, AppRoute.homeRoute);
+                          //   } else {
+                          //     showSnackBar(
+                          //       message:
+                          //           'Either username or password is incorrect',
+                          //       context: context,
+                          //       color: Colors.red,
+                          //     );
+                          //   }
                         }
                       },
                       child: const SizedBox(
@@ -135,6 +132,13 @@ class _LoginViewState extends ConsumerState<LoginView> {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 8),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, AppRoute.arithmeticRoute);
+                        },
+                        child: const Text('Arithmetic'))
                   ],
                 ),
               ),
