@@ -1,8 +1,10 @@
-class BatchEntity {
+import 'package:equatable/equatable.dart';
+
+class BatchEntity extends Equatable {
   final String? batchId;
   final String batchName;
 
-  BatchEntity({
+  const BatchEntity({
     this.batchId,
     required this.batchName,
   });
@@ -12,5 +14,7 @@ class BatchEntity {
         batchName: json["batchName"] as String,
       );
 
-      
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
 }

@@ -25,20 +25,20 @@ class BatchViewModel extends StateNotifier<BatchState> {
     data.fold(
       (l) {
         state = state.copyWith(isLoading: false, error: l.error);
-        showSnackBar(
-          message: 'Error: ${l.error}',
-          context: context,
-          color: Colors.red,
-        );
+        // showSnackBar(
+        //   message: 'Error: ${l.error}',
+        //   context: context,
+        //   color: Colors.red,
+        // );
       },
       (r) {
         // add new batch in the state as well
         state.batches.add(batch);
         state = state.copyWith(isLoading: false, error: null);
-        showSnackBar(
-          message: 'New batch added successfully',
-          context: context,
-        );
+        // showSnackBar(
+        //   message: 'New batch added successfully',
+        //   context: context,
+        // );
       },
     );
   }
@@ -60,7 +60,7 @@ class BatchViewModel extends StateNotifier<BatchState> {
 
     data.fold(
       (l) {
-        showSnackBar(message: l.error, context: context, color: Colors.red);
+        // showSnackBar(message: l.error, context: context, color: Colors.red);
 
         state = state.copyWith(isLoading: false, error: l.error);
       },
@@ -68,10 +68,10 @@ class BatchViewModel extends StateNotifier<BatchState> {
         // remove that course only from the state
         state.batches.remove(batch);
         state = state.copyWith(isLoading: false, error: null);
-        showSnackBar(
-          message: 'Batch delete successfully',
-          context: context,
-        );
+        // showSnackBar(
+        //   message: 'Batch delete successfully',
+        //   context: context,
+        // );
       },
     );
   }

@@ -1,4 +1,6 @@
-class CourseEntity {
+import 'package:equatable/equatable.dart';
+
+class CourseEntity extends Equatable{
   final String? courseId;
   final String courseName;
 
@@ -13,4 +15,8 @@ class CourseEntity {
       courseName: json['courseName'] as String,
     );
   }
+  
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
 }

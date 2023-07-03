@@ -2,15 +2,16 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive_and_api_for_class/config/router/app_route.dart';
-import 'package:hive_and_api_for_class/core/common/snackbar/my_snackbar.dart';
 import 'package:hive_and_api_for_class/features/auth/domain/entity/student_entity.dart';
 import 'package:hive_and_api_for_class/features/auth/domain/use_case/auth_usecase.dart';
 import 'package:hive_and_api_for_class/features/auth/presentation/state/auth_state.dart';
 
+import '../../../../config/router/app_route.dart';
+
 final authViewModelProvider =
     StateNotifierProvider<AuthViewModel, AuthState>((ref) {
   return AuthViewModel(
+    // NOte: should mock here by Mockito in order to avoid real network call
     ref.read(authUseCaseProvider),
   );
 });
@@ -46,10 +47,13 @@ class AuthViewModel extends StateNotifier<AuthState> {
     data.fold(
       (failure) {
         state = state.copyWith(isLoading: false, error: failure.error);
-        showSnackBar(context: context, message: failure.error);
+        // uncomment below Flutter code for unit testing
+        // showSnackBar(context: context, message: failure.error);
       },
       (success) {
         state = state.copyWith(isLoading: false, error: null);
+        // uncomment below Flutter code for unit testing
+
         Navigator.popAndPushNamed(context, AppRoute.homeRoute);
 
         // isLogin = success;
