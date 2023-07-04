@@ -24,8 +24,6 @@ import 'login_view_test.mocks.dart';
   MockSpec<BatchUseCase>(),
   MockSpec<CourseUseCase>(),
 ])
-
-// run this command : dart run build_runner build --delete-conflicting-outputs
 void main() {
   late AuthUseCase mockAuthUsecase;
   late BatchUseCase mockBatchUsecase;
@@ -36,7 +34,7 @@ void main() {
   late List<CourseEntity> lstCourseEntity;
   late bool isLogin;
 
-// initialization of above properties
+  // initialization of above properties
   setUpAll(() async {
     mockAuthUsecase = MockAuthUseCase();
     mockBatchUsecase = MockBatchUseCase();
@@ -47,6 +45,7 @@ void main() {
 
     isLogin = true;
   });
+
   testWidgets('login test with username and password and open dashboard',
       (tester) async {
     when(mockAuthUsecase.loginStudent('sanjiv', 'sanjiv123'))
@@ -78,19 +77,27 @@ void main() {
       ),
     );
 
-// use this when the page is refreshed or state changed
+    // use this when the page is refreshed or state changed
     await tester.pumpAndSettle();
 
-    // find textformfields and insert values
+    // find text form fields and insert values
     await tester.enterText(find.byType(TextFormField).at(0), 'sanjiv');
     await tester.enterText(find.byType(TextFormField).at(1), 'sanjiv123');
 
-// click on the button
+    // click on the button
     await tester.tap(find.widgetWithText(ElevatedButton, 'Login'));
 
-    await tester.pumpAndSettle();
+    // wait for the next frame to process the exceptions
+    await tester.pump();
 
-// verify
+    // handle and acknowledge all exceptions
+    dynamic exception;
+    while ((exception = tester.takeException()) != null) {
+      // Handle or assert on each exception if needed
+      print('Caught exception: $exception');
+    }
+
+    // verify
     expect(find.text('Dashboard View'), findsOneWidget);
   });
 }

@@ -9,7 +9,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../test_data/batch_entity_test.dart';
-import 'auth_unit_test.mocks.dart';
 import 'batch_unit_test.mocks.dart';
 
 @GenerateNiceMocks([
