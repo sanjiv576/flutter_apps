@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-class CourseEntity extends Equatable{
+class CourseEntity extends Equatable {
   final String? courseId;
   final String courseName;
 
-  CourseEntity({
+  const CourseEntity({
     this.courseId,
     required this.courseName,
   });
@@ -15,8 +15,7 @@ class CourseEntity extends Equatable{
       courseName: json['courseName'] as String,
     );
   }
-  
+
   @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [courseId, courseName];
 }
