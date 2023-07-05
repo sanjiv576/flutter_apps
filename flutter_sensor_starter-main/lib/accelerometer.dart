@@ -11,17 +11,32 @@ class AccelerometerScreen extends StatefulWidget {
 }
 
 class _AccelerometerScreenState extends State<AccelerometerScreen> {
+  // empty list for storing x,y,z co-ordinates
   List<double> _accelerometerValue = [];
   final List<StreamSubscription<dynamic>> _streamSubscription = [];
 
   @override
   void initState() {
+    // initialize the
     _streamSubscription.add(accelerometerEvents!.listen((event) {
+      // NOte: write conditions here to add any feature
+      // if(event.x > )
       setState(() {
         _accelerometerValue = [event.x, event.y, event.z];
       });
     }));
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // if multiple sensors are used in a single view, loop each sensor and dispose it
+    for (final subscription in _streamSubscription) {
+      subscription.cancel();
+    }
+
+
+    super.dispose();
   }
 
   @override
